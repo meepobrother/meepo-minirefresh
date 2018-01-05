@@ -220,7 +220,6 @@
 }
 
 .minirefresh-theme-default .downwrap-content {
-    /*position: absolute;*/
     width: 100%;
     padding: 10px 0;
     text-align: center;
@@ -240,7 +239,6 @@
 
 .minirefresh-theme-default .minirefresh-downwrap .downwrap-success,
 .minirefresh-theme-default .minirefresh-downwrap .downwrap-error {
-    /*border-bottom-color: gray;*/
     display: none;
 }
 
@@ -253,9 +251,5 @@
 }
 
 .minirefresh-theme-default .status-nomore .upwrap-tips {
-    /*
-               * vertical-align: middle;会导致显示不全，display:block也不起作用
-               * 因此设置一个padding
-               */
     padding: 15px 0;
 }
