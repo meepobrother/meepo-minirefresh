@@ -56,6 +56,7 @@ export class MinirefreshDefaultComponent implements OnInit {
                         }
                     }
                 });
+                console.log(this.ctrl);
             }
         });
     }
