@@ -55,28 +55,36 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
     }
 
     ngAfterContentInit() {
-        this.init();
+        this.loadSrc();
         console.log('minirefresh inited');
     }
 
-    init() {
-        this.loader.importLocals([
-            './minirefresh/minirefresh.min.js',
-            './minirefresh/themes/default/minirefresh.theme.default.min.js'
-        ]).subscribe(res => {
-            if (res) {
-                if (this.ctrl) {
-                    if (this._minirefresh.nativeElement) {
-                        this.options.container = this._minirefresh.nativeElement;
-                        this.ctrl.refreshOptions(this.options);
-                    }
-                } else {
-                    if (this._minirefresh.nativeElement) {
-                        this.options.container = this._minirefresh.nativeElement;
-                        this.ctrl = new MiniRefresh(this.options);
-                    }
+    loadSrc() {
+        if (MiniRefresh) {
+            this.init();
+        } else {
+            this.loader.importLocals([
+                './minirefresh/minirefresh.min.js',
+                './minirefresh/themes/default/minirefresh.theme.default.min.js'
+            ]).subscribe(res => {
+                if (res) {
+                    this.init();
                 }
+            });
+        }
+    }
+
+    init() {
+        if (this.ctrl) {
+            if (this._minirefresh.nativeElement) {
+                this.options.container = this._minirefresh.nativeElement;
+                this.ctrl.refreshOptions(this.options);
             }
-        });
+        } else {
+            if (this._minirefresh.nativeElement) {
+                this.options.container = this._minirefresh.nativeElement;
+                this.ctrl = new MiniRefresh(this.options);
+            }
+        }
     }
 }
