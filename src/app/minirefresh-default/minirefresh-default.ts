@@ -55,6 +55,11 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
     }
 
     ngAfterContentInit() {
+        this.init();
+        console.log('minirefresh inited');
+    }
+
+    init() {
         this.loader.importLocals([
             './minirefresh/minirefresh.min.js',
             './minirefresh/themes/default/minirefresh.theme.default.min.js'
