@@ -51,7 +51,8 @@ export class MinirefreshDefaultComponent implements OnInit {
                     up: {
                         callback: () => {
                             this.up.emit(this.up$);
-                        }
+                        },
+                        isAuto: true
                     }
                 });
             }
