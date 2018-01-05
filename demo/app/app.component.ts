@@ -108,7 +108,6 @@ export class AppComponent {
   onLoad(e: any) {
     let hasMore = false;
     this.items = [...this.items, ...items];
-    console.log(this.items);
     // 是否还有更多了
     e.next(hasMore);
     this.cd.markForCheck();

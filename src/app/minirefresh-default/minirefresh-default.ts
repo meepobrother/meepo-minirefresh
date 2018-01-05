@@ -6,19 +6,21 @@ import {
 import { LoaderService } from 'meepo-loader';
 import { Subject } from 'rxjs/Subject';
 declare const MiniRefresh: any;
+
 @Component({
     selector: 'minirefresh-default',
     templateUrl: './minirefresh-default.html',
     styleUrls: ['./minirefresh-default.scss'],
     encapsulation: ViewEncapsulation.None
 })
-
 export class MinirefreshDefaultComponent implements OnInit {
     @ViewChild('minirefresh') _minirefresh: ElementRef;
     @Output() onRefresh: EventEmitter<any> = new EventEmitter();
     @Output() onLoad: EventEmitter<any> = new EventEmitter();
 
     load$: Subject<any> = new Subject();
+    refresh$: Subject<any> = new Subject();
+
     ctrl: any;
     constructor(
         public loader: LoaderService,
@@ -26,6 +28,9 @@ export class MinirefreshDefaultComponent implements OnInit {
     ) {
         this.load$.subscribe(res => {
             this.ctrl && this.ctrl.endUpLoading(res);
+        });
+        this.refresh$.subscribe(res => {
+            this.ctrl && this.ctrl.endDownLoading(res);
         });
     }
 
@@ -39,10 +44,7 @@ export class MinirefreshDefaultComponent implements OnInit {
                     container: this._minirefresh.nativeElement,
                     down: {
                         callback: () => {
-                            this.onRefresh.emit();
-                            setTimeout(() => {
-                                this.ctrl.endDownLoading(false);
-                            }, 1000);
+                            this.onRefresh.emit(this.refresh$);
                         },
                         isAuto: true
                     },
