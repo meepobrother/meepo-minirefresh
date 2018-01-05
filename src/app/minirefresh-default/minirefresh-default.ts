@@ -1,7 +1,7 @@
 import {
     Component, OnInit,
     ElementRef, ViewEncapsulation,
-    HostBinding, ViewChild, Output, EventEmitter
+    HostBinding, ViewChild, Output, EventEmitter, AfterContentInit
 } from '@angular/core';
 import { LoaderService } from 'meepo-loader';
 import { Subject } from 'rxjs/Subject';
@@ -13,7 +13,7 @@ declare const MiniRefresh: any;
     styleUrls: ['./minirefresh-default.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class MinirefreshDefaultComponent implements OnInit {
+export class MinirefreshDefaultComponent implements AfterContentInit {
     @ViewChild('minirefresh') _minirefresh: ElementRef;
     @Output() down: EventEmitter<any> = new EventEmitter();
     @Output() up: EventEmitter<any> = new EventEmitter();
@@ -54,7 +54,7 @@ export class MinirefreshDefaultComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
+    ngAfterContentInit() {
         this.loader.importLocals([
             './minirefresh/minirefresh.min.js',
             './minirefresh/themes/default/minirefresh.theme.default.min.js'
