@@ -52,6 +52,7 @@ export class MinirefreshDefaultComponent implements OnInit {
                     },
                     up: {
                         callback: () => {
+                            console.log('up');
                             this.onLoad.emit(this.load$);
                         }
                     }
