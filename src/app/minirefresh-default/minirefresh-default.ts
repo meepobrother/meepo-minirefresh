@@ -15,24 +15,22 @@ declare const MiniRefresh: any;
 })
 export class MinirefreshDefaultComponent implements OnInit {
     @ViewChild('minirefresh') _minirefresh: ElementRef;
-    @Output() onRefresh: EventEmitter<any> = new EventEmitter();
-    @Output() onLoad: EventEmitter<any> = new EventEmitter();
+    @Output() down: EventEmitter<any> = new EventEmitter();
+    @Output() up: EventEmitter<any> = new EventEmitter();
 
-    load$: Subject<any> = new Subject();
-    refresh$: Subject<any> = new Subject();
+    up$: Subject<any> = new Subject();
+    down$: Subject<any> = new Subject();
 
     ctrl: any;
     constructor(
         public loader: LoaderService,
         public ele: ElementRef
     ) {
-        this.load$.subscribe(res => {
-            console.log('load', res);
-            this.ctrl && this.ctrl.endUpLoading(res);
-        });
-        this.refresh$.subscribe(res => {
-            console.log('refresh', res);
+        this.down$.subscribe(res => {
             this.ctrl && this.ctrl.endDownLoading(res);
+        });
+        this.up$.subscribe(res => {
+            this.ctrl && this.ctrl.endUpLoading(res);
         });
     }
 
@@ -46,18 +44,16 @@ export class MinirefreshDefaultComponent implements OnInit {
                     container: this._minirefresh.nativeElement,
                     down: {
                         callback: () => {
-                            this.onRefresh.emit(this.refresh$);
+                            this.down.emit(this.down$);
                         },
                         isAuto: true
                     },
                     up: {
                         callback: () => {
-                            console.log('up');
-                            this.onLoad.emit(this.load$);
+                            this.up.emit(this.up$);
                         }
                     }
                 });
-                console.log(this.ctrl);
             }
         });
     }
