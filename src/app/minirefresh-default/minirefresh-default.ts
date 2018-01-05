@@ -61,9 +61,13 @@ export class MinirefreshDefaultComponent implements OnInit {
         ]).subscribe(res => {
             if (res) {
                 if (this.ctrl) {
-                    this.ctrl.refreshOptions(this.options);
-                }else{
-                    this.ctrl = new MiniRefresh(this.options);
+                    if (this._minirefresh.nativeElement) {
+                        this.ctrl.refreshOptions(this.options);
+                    }
+                } else {
+                    if (this._minirefresh.nativeElement) {
+                        this.ctrl = new MiniRefresh(this.options);
+                    }
                 }
             }
         });
