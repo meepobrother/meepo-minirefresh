@@ -20,6 +20,23 @@ export class MinirefreshDefaultComponent implements OnInit {
 
     up$: Subject<any> = new Subject();
     down$: Subject<any> = new Subject();
+    reset$: Subject<any> = new Subject();
+
+    options: any = {
+        container: this._minirefresh.nativeElement,
+        down: {
+            callback: () => {
+                this.down.emit(this.down$);
+            },
+            isAuto: true
+        },
+        up: {
+            callback: () => {
+                this.up.emit(this.up$);
+            },
+            isAuto: true
+        }
+    };
 
     ctrl: any;
     constructor(
@@ -32,6 +49,9 @@ export class MinirefreshDefaultComponent implements OnInit {
         this.up$.subscribe(res => {
             this.ctrl && this.ctrl.endUpLoading(res);
         });
+        this.reset$.subscribe(res => {
+            this.ctrl && this.ctrl.resetUpLoading();
+        });
     }
 
     ngOnInit() {
@@ -40,21 +60,11 @@ export class MinirefreshDefaultComponent implements OnInit {
             './minirefresh/themes/default/minirefresh.theme.default.min.js'
         ]).subscribe(res => {
             if (res) {
-                this.ctrl = new MiniRefresh({
-                    container: this._minirefresh.nativeElement,
-                    down: {
-                        callback: () => {
-                            this.down.emit(this.down$);
-                        },
-                        isAuto: true
-                    },
-                    up: {
-                        callback: () => {
-                            this.up.emit(this.up$);
-                        },
-                        isAuto: true
-                    }
-                });
+                if (this.ctrl) {
+                    this.ctrl.refreshOptions(this.options);
+                }else{
+                    this.ctrl = new MiniRefresh(this.options);
+                }
             }
         });
     }
