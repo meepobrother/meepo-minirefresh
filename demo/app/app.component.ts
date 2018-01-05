@@ -116,6 +116,7 @@ export class AppComponent {
   onRefresh(e: any) {
     this.items = items;
     this.charms = charms;
+    e.next(false);
     this.cd.markForCheck();
   }
 }

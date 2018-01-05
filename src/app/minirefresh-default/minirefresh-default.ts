@@ -36,8 +36,8 @@ export class MinirefreshDefaultComponent implements OnInit {
 
     ngOnInit() {
         this.loader.importLocals([
-            './minirefresh.min.js',
-            './themes/default/minirefresh.theme.default.min.js'
+            './minirefresh/minirefresh.min.js',
+            './minirefresh/themes/default/minirefresh.theme.default.min.js'
         ]).subscribe(res => {
             if (res) {
                 this.ctrl = new MiniRefresh({

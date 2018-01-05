@@ -6,7 +6,7 @@ import { MinirefreshDefaultComponent } from './minirefresh-default/minirefresh-d
     imports: [
         CommonModule,
         LoaderModule.forRoot({
-            root: './assets/meepo.libs/minirefresh/'
+            root: './assets/meepo.libs/'
         })
     ],
     exports: [
