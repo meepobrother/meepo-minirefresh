@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SwiperModule } from '../../src/app/app';
+import { MinirefreshModule } from '../../src/app/app';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { SwiperModule } from '../../src/app/app';
   ],
   imports: [
     BrowserModule,
-    SwiperModule
+    MinirefreshModule
   ],
   providers: [],
   bootstrap: [AppComponent]
