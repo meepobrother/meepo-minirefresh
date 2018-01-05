@@ -23,7 +23,7 @@ export class MinirefreshDefaultComponent implements OnInit {
     reset$: Subject<any> = new Subject();
 
     options: any = {
-        container: this._minirefresh.nativeElement,
+        container: null,
         down: {
             callback: () => {
                 this.down.emit(this.down$);
@@ -62,10 +62,12 @@ export class MinirefreshDefaultComponent implements OnInit {
             if (res) {
                 if (this.ctrl) {
                     if (this._minirefresh.nativeElement) {
+                        this.options.container = this._minirefresh.nativeElement;
                         this.ctrl.refreshOptions(this.options);
                     }
                 } else {
                     if (this._minirefresh.nativeElement) {
+                        this.options.container = this._minirefresh.nativeElement;
                         this.ctrl = new MiniRefresh(this.options);
                     }
                 }
