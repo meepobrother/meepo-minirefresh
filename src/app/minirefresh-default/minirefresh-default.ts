@@ -60,7 +60,7 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
     }
 
     loadSrc() {
-        if (MiniRefresh) {
+        if (window['MiniRefresh']) {
             this.init();
         } else {
             this.loader.importLocals([
