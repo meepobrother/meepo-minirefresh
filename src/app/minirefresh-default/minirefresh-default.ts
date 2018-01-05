@@ -43,7 +43,8 @@ export class MinirefreshDefaultComponent implements OnInit {
                             setTimeout(() => {
                                 this.ctrl.endDownLoading(false);
                             }, 1000);
-                        }
+                        },
+                        isAuto: true
                     },
                     up: {
                         callback: () => {

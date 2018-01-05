@@ -1,6 +1,94 @@
 import {
-  Component, ChangeDetectionStrategy,
+  Component, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
+
+let charms: any[] = [{
+  title: '标题1',
+  image: 'http://p.qpic.cn/qqconadmin/0/225ce8067b434eb9b2bb02f966599a4e/0',
+  desc: '简介简介简介简介简介简介',
+  color: 'rgb(26, 182, 252)'
+}, {
+  title: '标题1',
+  image: 'http://p.qpic.cn/qqconadmin/0/225ce8067b434eb9b2bb02f966599a4e/0',
+  desc: '简介简介简介简介简介简介',
+  color: 'rgb(255, 184, 0)'
+}, {
+  title: '标题1',
+  image: 'http://p.qpic.cn/qqconadmin/0/225ce8067b434eb9b2bb02f966599a4e/0',
+  desc: '简介简介简介简介简介简介',
+  color: 'rgb(255, 100, 100)'
+}, {
+  title: '标题1',
+  image: 'http://p.qpic.cn/qqconadmin/0/225ce8067b434eb9b2bb02f966599a4e/0',
+  desc: '简介简介简介简介简介简介',
+  color: 'rgb(255, 90, 164)'
+}];
+
+let items = [{
+  desc: '考上就“偷着乐”的五类专业, 20年后也不会“衰落”!',
+  images: [
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'video'
+    }
+  ],
+  avatar: 'https://q.qlogo.cn/g?b=qq&k=VIE5RHCJLvbeXSZXXndASw&s=100',
+  nickname: '杨明明',
+  goods: 0,
+  discuss: 0,
+  look: 0,
+  title: '米波网络',
+  color: 'red',
+  link: ''
+}, {
+  desc: '考上就“偷着乐”的五类专业, 20年后也不会“衰落”!',
+  images: [
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+  ],
+  avatar: 'https://q.qlogo.cn/g?b=qq&k=VIE5RHCJLvbeXSZXXndASw&s=100',
+  nickname: '杨明明',
+  goods: 0,
+  discuss: 0,
+  look: 0,
+  title: '米波网络',
+  color: 'red',
+  link: ''
+}, {
+  desc: '考上就“偷着乐”的五类专业, 20年后也不会“衰落”!',
+  images: [
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+    {
+      src: 'https://gpic.qpic.cn/gbar_pic/SMBRdKzfPmiaJsG7tzfXFeYKicBIUzEzPwXgXtibQUJiaCRmFYbroVOumWCSRtlI9kiaP/320',
+      type: 'image'
+    },
+  ],
+  avatar: 'https://q.qlogo.cn/g?b=qq&k=VIE5RHCJLvbeXSZXXndASw&s=100',
+  nickname: '杨明明',
+  goods: 0,
+  discuss: 0,
+  look: 0,
+  title: '米波网络',
+  color: 'red',
+  link: ''
+}];
 
 @Component({
   selector: 'app-root',
@@ -10,13 +98,25 @@ import {
 })
 export class AppComponent {
 
+  constructor(
+    public cd: ChangeDetectorRef
+  ) { }
+
+  items: any[] = [];
+  charms: any[] = [];
+
   onLoad(e: any) {
-    let hasMore = true;
+    let hasMore = false;
+    this.items = [...this.items, ...items];
+    console.log(this.items);
     // 是否还有更多了
     e.next(hasMore);
+    this.cd.markForCheck();
   }
 
   onRefresh(e: any) {
-    console.log('refresh');
+    this.items = items;
+    this.charms = charms;
+    this.cd.markForCheck();
   }
 }
