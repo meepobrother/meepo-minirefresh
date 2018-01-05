@@ -51,6 +51,9 @@ export class MinirefreshDefaultComponent implements OnInit {
                     up: {
                         callback: () => {
                             this.onLoad.emit(this.load$);
+                            setTimeout(() => {
+                                this.load$.next(false);
+                            }, 1000);
                         }
                     }
                 });
