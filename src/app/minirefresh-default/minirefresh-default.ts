@@ -27,9 +27,11 @@ export class MinirefreshDefaultComponent implements OnInit {
         public ele: ElementRef
     ) {
         this.load$.subscribe(res => {
+            console.log('load', res);
             this.ctrl && this.ctrl.endUpLoading(res);
         });
         this.refresh$.subscribe(res => {
+            console.log('refresh', res);
             this.ctrl && this.ctrl.endDownLoading(res);
         });
     }
