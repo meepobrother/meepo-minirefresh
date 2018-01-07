@@ -27,9 +27,10 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
         down: {
             callback: () => {
                 this.down.emit(this.down$);
-            },
-            isAuto: true,
-            offset: 0
+                setTimeout(() => {
+                    this.ctrl.endDownLoading(true);
+                }, 600);
+            }
         },
         up: {
             callback: () => {
@@ -48,7 +49,14 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
             this.ctrl && this.ctrl.endDownLoading(res);
         });
         this.up$.subscribe(res => {
-            this.ctrl && this.ctrl.endUpLoading(res);
+            setTimeout(() => {
+                if (res === true) {
+
+                    this.ctrl && this.ctrl.endUpLoading(false);
+                } else {
+                    this.ctrl && this.ctrl.endUpLoading(true);
+                }
+            }, 600);
         });
         this.reset$.subscribe(res => {
             this.ctrl && this.ctrl.resetUpLoading();
