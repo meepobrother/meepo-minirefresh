@@ -105,14 +105,15 @@ export class AppComponent {
   items: any[] = [];
   charms: any[] = [];
 
-  onLoad(e: any) {
+  up(e: any) {
     let hasMore = false;
     this.items = [...this.items, ...items];
     e.next(hasMore);
     this.cd.markForCheck();
   }
 
-  onRefresh(e: any) {
+  down(e: any) {
+    console.log('down');
     this.items = items;
     this.charms = charms;
     e.next(false);

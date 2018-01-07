@@ -28,7 +28,8 @@ export class MinirefreshDefaultComponent implements AfterContentInit {
             callback: () => {
                 this.down.emit(this.down$);
             },
-            isAuto: true
+            isAuto: true,
+            offset: 0
         },
         up: {
             callback: () => {

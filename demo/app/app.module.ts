@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { MinirefreshModule } from 'meepo-minirefresh';
+import { MinirefreshModule } from '../../src/app/app';
 import { ArticleModule } from 'meepo-article';
 
 
