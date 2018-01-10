@@ -58,7 +58,6 @@ export class MinirefreshComponent implements AfterContentInit {
                 }
             })
         }));
-        console.log(this.miniRefresh);
     }
 
     triggerDownLoading(isShowLoading) {
