@@ -97,10 +97,15 @@ let items = [{
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-
+  options: any;
   constructor(
     public cd: ChangeDetectorRef
-  ) { }
+  ) {
+    this.load();
+    this.options = {
+      container: '#minirefresh'
+    }
+  }
 
   items: any[] = [];
   charms: any[] = [];
@@ -117,6 +122,22 @@ export class AppComponent {
     this.items = items;
     this.charms = charms;
     e.next(false);
+    this.cd.markForCheck();
+  }
+
+  doUp(e: any) {
+    setTimeout(() => {
+      this.loadMore();
+      e.next(false);
+    }, 1000);
+  }
+
+  load() {
+    this.loadMore();
+  }
+
+  loadMore() {
+    this.items = [...this.items, ...this.items];
     this.cd.markForCheck();
   }
 }

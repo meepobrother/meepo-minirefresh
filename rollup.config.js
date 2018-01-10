@@ -242,7 +242,11 @@ let globals = {
     "meepo-store": "meepo-store",
     "meepo-uuid": "meepo-uuid",
     "meepo-xscroll": "meepo-xscroll",
-    
+    "meepo-article": "meepo-article",
+    "meepo-empty": "meepo-empty",
+    "meepo-hammer": "meepo-hammer",
+    "meepo-header": "meepo-header",
+    "minirefresh": "minirefresh",
 };
 
 let plugins = [

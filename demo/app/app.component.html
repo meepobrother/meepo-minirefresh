@@ -1,6 +1,17 @@
+<!-- <scroll height="300"></scroll> -->
 <!-- <minirefresh-default (up)="up($event)" (down)="down($event)">
-    <charm [items]="charms"></charm>
-    <article-list [items]="items"></article-list>
+    <ul style="background: #fff;">
+        <li *ngFor="let item of items">{{item.title}}</li>
+    </ul>
 </minirefresh-default> -->
 
-<minirefresh-header></minirefresh-header>
+<minirefresh id="minirefresh" [options]="options">
+    <ul>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+        <li *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">{{item}}</li>
+    </ul>
+</minirefresh>

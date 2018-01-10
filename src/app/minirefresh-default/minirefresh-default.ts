@@ -6,7 +6,6 @@ import {
 import { LoaderService } from 'meepo-loader';
 import { Subject } from 'rxjs/Subject';
 declare const MiniRefresh: any;
-
 @Component({
     selector: 'minirefresh-default',
     templateUrl: './minirefresh-default.html',

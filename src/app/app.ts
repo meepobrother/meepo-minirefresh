@@ -3,26 +3,26 @@ import { CommonModule } from '@angular/common';
 import { LoaderModule } from 'meepo-loader';
 import { HeaderModule } from 'meepo-header';
 import { EmptyModule } from 'meepo-empty';
+import { HammerModule } from 'meepo-hammer';
 
 import { MinirefreshDefaultComponent } from './minirefresh-default/minirefresh-default';
-import { MinirefreshHeaderComponent } from './minirefresh-header/minirefresh-header';
+import { MinirefreshComponent } from './minirefresh/minirefresh';
+
 
 @NgModule({
     imports: [
         CommonModule,
         LoaderModule.forRoot({
             root: './assets/meepo.libs/'
-        }),
-        HeaderModule,
-        EmptyModule
+        })
     ],
     exports: [
         MinirefreshDefaultComponent,
-        MinirefreshHeaderComponent
+        MinirefreshComponent
     ],
     declarations: [
         MinirefreshDefaultComponent,
-        MinirefreshHeaderComponent
+        MinirefreshComponent
     ],
     providers: [
     ],
