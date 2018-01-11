@@ -247,6 +247,7 @@ let globals = {
     "meepo-hammer": "meepo-hammer",
     "meepo-header": "meepo-header",
     "minirefresh": "minirefresh",
+    "meepo-empty": "meepo-empty"
 };
 
 let plugins = [
