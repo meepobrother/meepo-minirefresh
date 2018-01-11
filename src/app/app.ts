@@ -1,12 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderModule } from 'meepo-loader';
-import { HeaderModule } from 'meepo-header';
 import { EmptyModule } from 'meepo-empty';
-import { HammerModule } from 'meepo-hammer';
 
-import { MinirefreshDefaultComponent } from './minirefresh-default/minirefresh-default';
-import { MinirefreshComponent } from './minirefresh/minirefresh';
+import { MeepoRefreshComponent } from './meepo-refresh/meepo-refresh';
+import { MeepoRefreshDefaultComponent } from './meepo-refresh-default/meepo-refresh-default';
 
 
 @NgModule({
@@ -14,17 +12,19 @@ import { MinirefreshComponent } from './minirefresh/minirefresh';
         CommonModule,
         LoaderModule.forRoot({
             root: './assets/meepo.libs/'
-        })
+        }),
+        EmptyModule
     ],
     exports: [
-        MinirefreshDefaultComponent,
-        MinirefreshComponent
+        MeepoRefreshComponent,
+        MeepoRefreshDefaultComponent
     ],
     declarations: [
-        MinirefreshDefaultComponent,
-        MinirefreshComponent
+        MeepoRefreshComponent,
+        MeepoRefreshDefaultComponent
     ],
     providers: [
-    ],
+        
+    ]
 })
 export class MinirefreshModule { }
