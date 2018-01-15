@@ -20,15 +20,25 @@ export class MeepoRefreshDefaultComponent extends MeepoRefreshComponent {
         super(loader, ele);
     }
     init() {
-        if (window['MiniRefresh']) {
+        if (window['MiniRefreshTools'] && window['MiniRefreshTools']['default']) {
             super.init();
-        } else {
+        } else if (window['MiniRefreshTools']) {
             this.loader.importLocals([
-                './minirefresh/minirefresh.min.js'
+                './minirefresh/themes/default/minirefresh.theme.default.min.js'
             ]).subscribe(res => {
                 if (res) {
                     super.init();
                 }
+            });
+        } else {
+            super.init(() => {
+                this.loader.importLocals([
+                    './minirefresh/themes/default/minirefresh.theme.default.min.js'
+                ]).subscribe(res => {
+                    if (res) {
+                        super.init();
+                    }
+                });
             });
         }
     }

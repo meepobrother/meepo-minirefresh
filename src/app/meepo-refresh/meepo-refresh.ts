@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 declare const MiniRefresh: any;
 import { LoaderService } from 'meepo-loader';
+
 @Component({
     selector: 'meepo-refresh',
     templateUrl: './meepo-refresh.html',
@@ -34,7 +35,7 @@ export class MeepoRefreshComponent implements AfterContentInit {
                 down: {
                     callback: () => {
                         if (this.empty) {
-                            this.refresh.endDownLoading();
+                            this.refresh && this.refresh.endDownLoading();
                         }
                         this.down.next(this.refresh.endDownLoading);
                     }
@@ -43,7 +44,7 @@ export class MeepoRefreshComponent implements AfterContentInit {
                     callback: () => {
                         if (this.empty) {
                             setTimeout(() => {
-                                this.refresh.endUpLoading(true);
+                                this.refresh && this.refresh.endUpLoading(true);
                             }, 600);
                         }
                         this.up.next(this.refresh.endUpLoading);
@@ -55,7 +56,7 @@ export class MeepoRefreshComponent implements AfterContentInit {
         this.init();
     }
 
-    init() {
+    init(fn?: Function) {
         if (window['MiniRefresh']) {
             this.refresh = new MiniRefresh({
                 container: '#' + this._id,
@@ -66,13 +67,16 @@ export class MeepoRefreshComponent implements AfterContentInit {
                 './minirefresh/minirefresh.min.js'
             ]).subscribe(res => {
                 if (res) {
-                    this.refresh = new MiniRefresh({
-                        container: '#' + this._id,
-                        ...this.option
-                    });
+                    if (fn) {
+                        fn();
+                    } else {
+                        this.refresh = new MiniRefresh({
+                            container: '#' + this._id,
+                            ...this.option
+                        });
+                    }
                 }
             });
         }
-        console.log(this.refresh);
     }
 }
